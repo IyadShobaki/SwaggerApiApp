@@ -9,7 +9,13 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseSwaggerUI(opts =>
+    {
+        opts.SwaggerEndpoint("/swagger/v1/swagger.json", "v1");
+        // To change the landing/root url from https://localhost:7111/swagger/index.html
+        // To https://localhost:7111/
+        opts.RoutePrefix = string.Empty;
+    });
 }
 
 app.UseHttpsRedirection();
